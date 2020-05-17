@@ -25,7 +25,8 @@ case $list in
             gclone lsd goog:$dyj | awk '{print NR,$5}'
             read -p "选择" option
             dyj2=`gclone lsd goog:$dyj|awk -v sz=$option 'NR==sz {print$5}'`
-            dyj=$dyj"/"$dyj2;;
+            dyj=$dyj"/"$dyj2
+            ;;
             y)
             gclone copy goog:{$link} goog:$dyj --drive-server-side-across-configs -v
             break
@@ -33,6 +34,7 @@ case $list in
             *)
             gclone copy goog:{$link} goog:$dyj"/"$suer --drive-server-side-across-configs -v
             break
+            ;;
         esac
     done
 	;;
