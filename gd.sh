@@ -20,18 +20,18 @@ case $list in
 	    clear
 	    echo -e "输入n浏览下一级目录\n输入y将保存到 $dyj 文件夹\n输入其他字符将在 $dyj 下创建文件夹"
     	read -p "保存到 $dyj 这个文件夹？" suer
-        if [ $suer = n ];then
+        case $suer in
+            n)
             gclone lsd goog:$dyj | awk '{print NR,$5}'
             read -p "选择" option
             dyj2=`gclone lsd goog:$dyj|awk -v sz=$option 'NR==sz {print$5}'`
             dyj=$dyj"/"$dyj2
-        elif [ $suer = y ] ; then
+            y)
             gclone copy goog:{$link} goog:$dyj --drive-server-side-across-configs -v
             break
-        else
+            *)
             gclone copy goog:{$link} goog:$dyj"/"$suer --drive-server-side-across-configs -v
             break
-        fi
     done
 	;;
 	2)
