@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf gd.sh
 wget https://github.com/vcfe/gd/raw/master/gd.sh
 echo "输入配置gclone的名称"
 read -p "gclone config Name:" gclone
