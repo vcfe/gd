@@ -18,16 +18,16 @@ case $list in
 	while true
 	do
 	    clear
-	    echo -e "输入n浏览下一级目录\n直接回车将保存到$dyj \n输入其他字符将在 $dyj 下创建文件夹"
+	    echo -e "输入n浏览下一级目录\n输入y将保存到 $dyj 文件夹\n输入其他字符将在 $dyj 下创建文件夹"
     	read -p "保存到 $dyj 这个文件夹？" suer
         if [ $suer = n ];then
             gclone lsd goog:$dyj | awk '{print NR,$5}'
             read -p "选择" option
             dyj2=`gclone lsd goog:$dyj|awk -v sz=$option 'NR==sz {print$5}'`
             dyj=$dyj"/"$dyj2
-        elif [ -z $suer ] ; then
+        elif [ $suer = y ] ; then
             gclone copy goog:{$link} goog:$dyj --drive-server-side-across-configs -v
-        
+            break
         else
             gclone copy goog:{$link} goog:$dyj"/"$suer --drive-server-side-across-configs -v
             break
