@@ -23,8 +23,8 @@ link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 
 echo -e "为了操作快捷,简便,只支持选择一级目录\n二级目录需要手动创建"
 gclone lsd goog:|awk '{print "     ",NR,"     ",$5}'
-echo -e "\n\n确认请回车\n\n输入其他字符将在此目录下创建新文件夹并copy\n"
-read -p "     选择文件夹 ~>: " list
+echo -e "\n\n输入回车或者其他字符将在此目录下创建新文件夹并copy\n\n创建目录用 / 分隔"
+read -p "     选择文件夹，数字(1-99) ~>: " list
 case $list in
     [1-9])
     option

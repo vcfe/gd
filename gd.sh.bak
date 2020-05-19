@@ -27,11 +27,15 @@ echo -e "\n\n确认请回车\n\n输入其他字符将在此目录下创建新文
 read -p "     选择文件夹 ~>: " list
 case $list in
     [1-9])
-    option;;
+    option
+    gclone check goog:{$link} goog:$name"/"$list2 --disable ListR
+    ;;
     [1-9][0-9])
     option
+    gclone check goog:{$link} goog:$name"/"$list2 --disable ListR
         ;;
         *)
         gclone copy goog:{$link} goog:$list --drive-server-side-across-configs -v
+        gclone check goog:{$link} goog:$list --disable ListR
 esac
         
