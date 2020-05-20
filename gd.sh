@@ -26,9 +26,10 @@ else
     :
 fi
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
-fname=$(gclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk '/^{"id/{print $0}')
-foname=$(echo $fname | awk 'BEGIN{FS="\""}{print$8}')
+fname=$(gclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $4}')
+foname=$(gclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 clear
+[ $link != $fname ] && echo "链接无效，检查是否有权限" && exit
 echo -e "\n\n为了操作快捷,简便,只支持选择一级目录\n二级目录需要手动创建"
 gclone lsd goog:|awk '{print "     ",NR,"     ",$5}'
 echo -e "\n\n确认保存根目录请回车\n\n输入其他字符将在此目录下创建新文件夹并copy\n"
