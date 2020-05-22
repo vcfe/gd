@@ -10,7 +10,7 @@ name=`folder $list`
 echo -e "\n\n确认请回车\n\n输入其他字符将在此 $name 下创建新文件夹并copy\n"
 read -p "保存到 $name/$foname 这个文件夹？" list2
 if [ -z $list2 ] ; then
-    echo "保存至    $list/$foname"
+    echo "保存至    $name/$foname"
     copy $link $name"/"$foname
 else
     echo "保存至    $name/$list2"
@@ -33,7 +33,7 @@ clear
 echo -e "\n\n为了操作快捷,简便,只支持选择一级目录\n二级目录需要手动创建"
 gclone lsd goog:|awk '{print "     ",NR,"     ",$5}'
 echo -e "\n\n确认保存根目录请回车\n\n输入其他字符将在此目录下创建新文件夹并copy\n"
-echo "此资源目录为 $foname"
+echo -e "此资源目录为 $foname\n\n"
 read -p "     选择文件夹 ~>: " list
 case $list in
     [1-9])
