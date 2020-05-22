@@ -1,0 +1,7 @@
+#!/bin/bash
+link=$1
+link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
+echo >zc.log
+gclone copy goog:{$link} goog:$2 --drive-server-side-across-configs -v --log-file=zc.log
+tail -n 5 zc.log
+gclone check goog:{$link} goog:$2 --disable ListR
