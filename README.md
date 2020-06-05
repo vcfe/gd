@@ -15,5 +15,5 @@ gclone配置好。
   
 使用:  
 ```shell
-sh -c "$(curl -fsSL https://github.com/vcfe/gd/raw/master/install.sh)" 
+sh -c "$(curl -fsSL https://git.io/gd.sh)" 
 ```
