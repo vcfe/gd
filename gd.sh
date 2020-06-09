@@ -1,6 +1,6 @@
 #!/bin/bash
 copy(){
-gclone copy goog:{$1} goog:$2 --drive-server-side-across-configs -v
+gclone copy goog:{$1} goog:"$2" --drive-server-side-across-configs -v
 }
 folder(){
 gclone lsd goog:$2|awk -v sz=$1 'NR==sz {print$5}'
@@ -11,10 +11,10 @@ echo -e "\n\n确认请回车\n\n输入其他字符将在此 $name 下创建新�
 read -p "保存到 $name/$foname 这个文件夹？" list2
 if [ -z $list2 ] ; then
     echo "保存至    $name/$foname"
-    copy $link "$name/$foname"
+    copy $link $name/$foname
 else
     echo "保存至    $name/$list2"
-    copy $link "$name/$list2"
+    copy $link $name/$list2
 fi
 }
 read -p """输入分享链接
