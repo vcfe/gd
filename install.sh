@@ -10,6 +10,6 @@ dir=`pwd`
 pa=${PATH%%:*}
 rm -rf $pa/gd
 ln -s $dir/gd.sh $pa/gd
-echo "\n配合screen使用效果更佳(可以后台执行)\n\n"
-echo "输入 gd 使用脚本"
+echo "\n配合screen使用效果更佳(可以后台执行)\n"
+echo "输入 gd 使用脚本\n输入 gd 使用脚本\n输入 gd 使用脚本\n\n"
 
