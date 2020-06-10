@@ -5,4 +5,10 @@ echo "输入配置gclone的名称"
 read -p "gclone config Name:" gclone
 sed -i "s/goog/$gclone/g" gd.sh
 chmod +x gd.sh
-echo "请输入 ./gd.sh 使用脚本"
+dir=`pwd`
+pa=${PATH%%:*}
+rm -rf $pa/gd
+ln -s $dir/gd.sh $pa/gd
+clear
+echo -e "\n\n\n\n\n\n\n配合screen使用效果更佳(可以后台执行)\n\n\n输入 gd 使用脚本"
+

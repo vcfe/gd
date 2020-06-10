@@ -12,10 +12,21 @@ read -p "保存到 $name/$foname 这个文件夹？" list2
 if [ -z $list2 ] ; then
     echo "保存至    $name/$foname"
     copy $link "$name/$foname"
+    check "$name/$foname"
 else
     echo "保存至    $name/$list2"
     copy $link $name/$list2
+    check $name/$list2
 fi
+}
+check(){
+clear
+echo -e "\n\n\n\n操作完成。。。。\n\n\n\n\n开始数据比对....."
+gclone check goog:{$link} goog:"$1" --disable ListR
+echo -e "完成。\n\n\n"
+echo "去重进行中......(删除较旧文件)"
+gclone dedupe oldest goog:"$1"
+echo "完成。"
 }
 read -p """输入分享链接
      请输入 ~>:""" link
@@ -37,13 +48,11 @@ echo -e "此资源目录为 $foname\n\n"
 read -p "     选择文件夹 ~>: " list
 case $list in
     [1-9])
-    
     option;;
     [1-9][0-9])
-    option
-        ;;
+    option;;
         *)
         echo "保存至    $list/$foname"
         gclone copy goog:{$link} goog:"$list/$foname" --drive-server-side-across-configs -v
-esac
-        
+	check "$list/$foname"
+esac 
